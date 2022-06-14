@@ -27,6 +27,9 @@ type RunArgs struct {
 	ClusterName string
 	CustomEnv   []string
 	CustomCMD   []string
+	Podcidr     string
+	Repo        string
+	ProxyURL    string
 }
 
 type ScaleArgs struct {

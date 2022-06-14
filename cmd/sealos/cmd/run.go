@@ -23,21 +23,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var contact = `
-      ___           ___           ___           ___       ___           ___     
-     /\  \         /\  \         /\  \         /\__\     /\  \         /\  \    
-    /::\  \       /::\  \       /::\  \       /:/  /    /::\  \       /::\  \   
-   /:/\ \  \     /:/\:\  \     /:/\:\  \     /:/  /    /:/\:\  \     /:/\ \  \  
-  _\:\~\ \  \   /::\~\:\  \   /::\~\:\  \   /:/  /    /:/  \:\  \   _\:\~\ \  \ 
- /\ \:\ \ \__\ /:/\:\ \:\__\ /:/\:\ \:\__\ /:/__/    /:/__/ \:\__\ /\ \:\ \ \__\
- \:\ \:\ \/__/ \:\~\:\ \/__/ \/__\:\/:/  / \:\  \    \:\  \ /:/  / \:\ \:\ \/__/
-  \:\ \:\__\    \:\ \:\__\        \::/  /   \:\  \    \:\  /:/  /   \:\ \:\__\  
-   \:\/:/  /     \:\ \/__/        /:/  /     \:\  \    \:\/:/  /     \:\/:/  /  
-    \::/  /       \:\__\         /:/  /       \:\__\    \::/  /       \::/  /   
-     \/__/         \/__/         \/__/         \/__/     \/__/         \/__/  
-
-                  Website :https://www.sealos.io/
-                  Address :github.com/labring/sealos
+var contact = `NewLand Kubernetes
 `
 
 var exampleRun = `
@@ -96,4 +82,7 @@ func init() {
 	runCmd.Flags().StringSliceVarP(&runArgs.CustomEnv, "env", "e", []string{}, "set custom environment variables")
 	runCmd.Flags().BoolVarP(&processor.ForceOverride, "force", "f", false, "we also can input an --force flag to run app in this cluster by force")
 	runCmd.Flags().StringVar(&runArgs.ClusterName, "name", "default", "set cluster name variables")
+	runCmd.Flags().StringVar(&runArgs.Podcidr, "podcidr", "", "set cluster podcidr")
+	runCmd.Flags().StringVar(&runArgs.Repo, "repo", "", "set cluster repo")
+	runCmd.Flags().StringVar(&runArgs.ProxyURL, "proxy-url", "", "set cluster proxy-url")
 }

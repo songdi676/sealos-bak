@@ -104,4 +104,8 @@ type ClusterSpec struct {
 	// More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
 	// +optional
 	Command []string `json:"command,omitempty"`
+
+	Podcidr  string `json:"podcidr,omitempty"`
+	Repo     string `json:"repo,omitempty"`
+	ProxyURL string `json:"proxy-url,omitempty"`
 }

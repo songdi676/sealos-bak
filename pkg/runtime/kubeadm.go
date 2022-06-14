@@ -121,6 +121,12 @@ func (k *KubeadmRuntime) MergeKubeadmConfig() error {
 	if err := k.Merge(k.getDefaultKubeadmConfig()); err != nil {
 		return fmt.Errorf("failed to merge kubeadm config: %v", err)
 	}
+	if k.Cluster.Spec.Podcidr != "" {
+		k.ClusterConfiguration.Networking.PodSubnet = k.Cluster.Spec.Podcidr
+	}
+	if k.Cluster.Spec.Repo != "" {
+		k.ClusterConfiguration.ImageRepository = k.Cluster.Spec.Repo
+	}
 	k.setKubeadmAPIVersion()
 	return nil
 }
