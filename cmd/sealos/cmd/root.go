@@ -29,6 +29,7 @@ import (
 var (
 	debug          bool
 	clusterRootDir string
+	proxyURL       string
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -54,6 +55,7 @@ func init() {
 
 	rootCmd.PersistentFlags().BoolVar(&debug, "debug", false, "enable debug logger")
 	rootCmd.PersistentFlags().StringVar(&clusterRootDir, "clusterRootDir", contants.DefaultClusterRootfsDir, "cluster root directory")
+	rootCmd.PersistentFlags().StringVar(&proxyURL, "proxy-url", "", "set cluster proxy-url")
 }
 
 func onBootOnDie() {

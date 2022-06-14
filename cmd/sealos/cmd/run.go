@@ -29,7 +29,7 @@ var contact = `NewLand Kubernetes
 var exampleRun = `
 create cluster to your baremetal server, appoint the iplist:
 	sealos run labring/kubernetes:v1.24.0 --masters 192.168.0.2,192.168.0.3,192.168.0.4 \
-		--nodes 192.168.0.5,192.168.0.6,192.168.0.7 --passwd xxx
+		--nodes 192.168.0.5,192.168.0.6,192.168.0.7 --passwd xxx --podcidr 100.64.0.0/10
   multi image:
     sealos run labring/kubernetes:v1.24.0 calico:v3.22.1 \ 
         --masters 192.168.64.2,192.168.64.22,192.168.64.20 --nodes 192.168.64.21,192.168.64.19
