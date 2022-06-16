@@ -97,6 +97,7 @@ func (r *ClusterArgs) SetClusterArgs(imageList []string, args *RunArgs) error {
 	r.cluster.Spec.Podcidr = args.Podcidr
 	r.cluster.Spec.Repo = args.Repo
 	r.cluster.Spec.ProxyURL = args.ProxyURL
+	r.cluster.Spec.SSH.ProxyURL = args.ProxyURL
 	r.cluster.Spec.Env = args.CustomEnv
 	r.cluster.Spec.Command = args.CustomCMD
 	r.cluster.Spec.SSH.User = args.User

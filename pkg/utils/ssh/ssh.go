@@ -51,6 +51,7 @@ type SSH struct {
 	Password     string
 	PkFile       string
 	PkPassword   string
+	ProxyURL     string
 	Timeout      *time.Duration
 	LocalAddress *[]net.Addr
 }
@@ -69,6 +70,7 @@ func NewSSHClient(ssh *v2.SSH, isStdout bool) Interface {
 		Password:     ssh.Passwd,
 		PkFile:       ssh.Pk,
 		PkPassword:   ssh.PkPasswd,
+		ProxyURL:     ssh.ProxyURL,
 		LocalAddress: address,
 	}
 }
@@ -95,6 +97,7 @@ func NewSSHByCluster(cluster *v2.Cluster, isStdout bool) (Interface, error) {
 		Password:     cluster.Spec.SSH.Passwd,
 		PkFile:       cluster.Spec.SSH.Pk,
 		PkPassword:   cluster.Spec.SSH.PkPasswd,
+		ProxyURL:     cluster.Spec.SSH.ProxyURL,
 		LocalAddress: address,
 	}, nil
 }

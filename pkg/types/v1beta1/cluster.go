@@ -71,6 +71,7 @@ type SSH struct {
 	Pk       string `json:"pk,omitempty"`
 	PkPasswd string `json:"pkPasswd,omitempty"`
 	Port     uint16 `json:"port,omitempty"`
+	ProxyURL string `json:"proxy-url,omitempty"`
 }
 
 type Host struct {
