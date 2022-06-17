@@ -13,7 +13,7 @@
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/labring/sealos)
 [![Build Status](https://github.com/labring/sealos/actions/workflows/release.yml/badge.svg)](https://github.com/labring/sealos/actions)
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fpostwoman.io&logo=Postwoman)](https://sealyun.com)
-[![Go Report Card](https://goreportcard.com/badge/github.com/labring/sealos)](https://goreportcard.com/report/github.com/labring/sealos)
+[![OSCS Status](https://www.oscs1024.com/platform/badge/labring/sealos.svg?size=small)](https://www.oscs1024.com/project/labring/sealos?ref=badge_small)
 [![Chat on Telegram](https://img.shields.io/badge/chat-Telegram-blueviolet?logo=Telegram)](https://t.me/cloudnativer)
 
   </p>
@@ -25,7 +25,7 @@
 
 **Documentation: _[Website](https://www.sealyun.com), [Blog](https://icloudnative.io)_**
 
-**Join us: DingTalk(35371178), [Telegram](https://t.me/cloudnativer), QQ Group(98488045), Wechat：fangnux**
+**Join us: [DingTalk](https://qr.dingtalk.com/action/joingroup?code=v1,k1,1QW+Q/+iuEirIbgKFztrUNGrVBXAuKfltwpW1WlOTOo=&_dt_no_comment=1&origin=11), [Telegram](https://t.me/cloudnativer), QQ Group(98488045), Wechat：fangnux**
 
 ## What is sealos
 
@@ -33,7 +33,7 @@
 
 In the early stages, operatings systems have adopted a layered architecture, which later evolved into kernel architecture like Linux and Windows. With the emergence of container technologies, cloud OS will migrate to a "cloud kernel" architecture with strong cohesion in the future.
 
-![](https://user-images.githubusercontent.com/8912557/170530230-16ad5607-700c-436a-930c-663e800cbf6e.png)
+![](https://user-images.githubusercontent.com/8912557/173866494-379ba0dd-05af-4095-b63d-08f594581c52.png)
 
 - From now on, think of all your machines as an abstract supercomputer whose operating system is sealos, where Kubernetes serves as the OS kernel.
 - Instead of IaaS, PaaS and SaaS, there will only be cloud OS drivers(CSI, CNI and CRI implementations), cloud OS kernel(Kubernetes) and distributed applications.
@@ -150,6 +150,8 @@ And now everything is ready.
 
 ## Links
 
+- [Contribution Guidelines](./CONTRIBUTING.md)
+- [Development Guide](./DEVELOPGUIDE.md)
 - [sealos 3.0(older version)](https://github.com/labring/sealos/tree/release-v3.3.9#readme) For older version users. Note that sealos 4.0 includes significant improvements, so please upgrade ASAP.
 - [buildah](https://github.com/containers/buildah) Capabilities of buildah is widely used in sealos 4.0 to make cluster images compatible with container images and docker registry.
 - [sealer](https://github.com/sealerio/sealer) Capabilities of sealer is widely used in sealos 4.0 to make Clusterfile compatible with sealer, some module forked sealer source code.

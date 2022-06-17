@@ -128,6 +128,20 @@ func (k *KubeadmRuntime) MergeKubeadmConfig() error {
 		k.ClusterConfiguration.ImageRepository = k.Cluster.Spec.Repo
 	}
 	k.setKubeadmAPIVersion()
+	return k.validateVIP(k.getVip())
+}
+
+func (k *KubeadmRuntime) validateVIP(ip string) error {
+	for k, sub := range map[string]string{
+		"podSubnet":     k.KubeadmConfig.Networking.PodSubnet,
+		"serviceSubnet": k.KubeadmConfig.Networking.ServiceSubnet,
+	} {
+		if contains, err := iputils.Contains(sub, ip); err != nil {
+			return err
+		} else if contains {
+			return fmt.Errorf("ensure IP %s is not in %s range", ip, k)
+		}
+	}
 	return nil
 }
 
@@ -139,6 +153,7 @@ func (k *KubeadmRuntime) getClusterName() string {
 	return k.Cluster.Name
 }
 
+// todo: maybe make this virtual IP configurable?
 func (k *KubeadmRuntime) getVip() string {
 	return DefaultVIP
 }
