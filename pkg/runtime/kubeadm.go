@@ -127,6 +127,9 @@ func (k *KubeadmRuntime) MergeKubeadmConfig() error {
 	if k.Cluster.Spec.Repo != "" {
 		k.ClusterConfiguration.ImageRepository = k.Cluster.Spec.Repo
 	}
+	k.ClusterConfiguration.APIServer.ExtraArgs = map[string]string{
+		"service-node-port-range": "20000-60000",
+	}
 	k.setKubeadmAPIVersion()
 	return k.validateVIP(k.getVip())
 }
