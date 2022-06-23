@@ -101,8 +101,8 @@ func (s *SSH) Cmd(host, cmd string) ([]byte, error) {
 	defer client.Close()
 	defer session.Close()
 	logger.Info("执行的cmd 命令:" + cmd)
-	strings.ReplaceAll(cmd, "(", "'(")
-	strings.ReplaceAll(cmd, ")", ")'")
+	cmd = strings.ReplaceAll(cmd, "(", "'(")
+	cmd = strings.ReplaceAll(cmd, ")", ")'")
 	cmd = "sudo " + cmd
 	b, err := session.CombinedOutput(cmd)
 	if err != nil {
