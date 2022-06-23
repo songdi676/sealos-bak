@@ -17,6 +17,7 @@ package ssh
 import (
 	"bufio"
 	"fmt"
+	"github.com/labring/sealos/pkg/utils/logger"
 	"io"
 	"strings"
 	"sync"
@@ -41,6 +42,7 @@ func (s *SSH) CmdAsync(host string, cmds ...string) error {
 		if cmd == "" {
 			continue
 		}
+		logger.Info("执行的cmd 命令:" + cmd)
 		//cmd = "sudo " + cmd
 		if err := func(cmd string) error {
 			client, session, err := s.Connect(host)
@@ -96,6 +98,7 @@ func (s *SSH) Cmd(host, cmd string) ([]byte, error) {
 	}
 	defer client.Close()
 	defer session.Close()
+	logger.Info("执行的cmd 命令:" + cmd)
 	//cmd = "sudo " + cmd
 	b, err := session.CombinedOutput(cmd)
 	if err != nil {
