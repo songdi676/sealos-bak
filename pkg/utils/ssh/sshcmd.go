@@ -43,8 +43,8 @@ func (s *SSH) CmdAsync(host string, cmds ...string) error {
 			continue
 		}
 		logger.Info("执行的cmd 命令:" + cmd)
-		strings.ReplaceAll(cmd, "(", "'(")
-		strings.ReplaceAll(cmd, ")", ")'")
+		cmd = strings.ReplaceAll(cmd, "(", "'(")
+		cmd = strings.ReplaceAll(cmd, ")", ")'")
 		cmd = "sudo " + cmd
 		if err := func(cmd string) error {
 			client, session, err := s.Connect(host)
