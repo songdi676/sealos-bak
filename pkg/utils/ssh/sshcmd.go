@@ -43,7 +43,9 @@ func (s *SSH) CmdAsync(host string, cmds ...string) error {
 			continue
 		}
 		logger.Info("执行的cmd 命令:" + cmd)
-		//cmd = "sudo " + cmd
+		strings.ReplaceAll(cmd, "(", "'(")
+		strings.ReplaceAll(cmd, ")", ")'")
+		cmd = "sudo " + cmd
 		if err := func(cmd string) error {
 			client, session, err := s.Connect(host)
 			if err != nil {
@@ -101,7 +103,7 @@ func (s *SSH) Cmd(host, cmd string) ([]byte, error) {
 	logger.Info("执行的cmd 命令:" + cmd)
 	strings.ReplaceAll(cmd, "(", "'(")
 	strings.ReplaceAll(cmd, ")", ")'")
-	//cmd = "sudo " + cmd
+	cmd = "sudo " + cmd
 	b, err := session.CombinedOutput(cmd)
 	if err != nil {
 		return b, fmt.Errorf("[ssh][%s]run command failed [%s]", host, cmd)
