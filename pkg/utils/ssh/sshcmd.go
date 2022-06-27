@@ -42,11 +42,11 @@ func (s *SSH) CmdAsync(host string, cmds ...string) error {
 		if cmd == "" {
 			continue
 		}
-		logger.Info("exec cmd:" + cmd)
 		index := strings.Contains(cmd, "registryDomain")
 		if !index {
 			cmd = "sudo " + cmd
 		}
+		logger.Info("CmdAsync exec cmd:" + cmd)
 		if err := func(cmd string) error {
 			client, session, err := s.Connect(host)
 			if err != nil {
@@ -101,11 +101,12 @@ func (s *SSH) Cmd(host, cmd string) ([]byte, error) {
 	}
 	defer client.Close()
 	defer session.Close()
-	logger.Info("exec cmd:" + cmd)
+
 	index := strings.Contains(cmd, "registryDomain")
 	if !index {
 		cmd = "sudo " + cmd
 	}
+	logger.Info("exec cmd:" + cmd)
 	b, err := session.CombinedOutput(cmd)
 	if err != nil {
 		return b, fmt.Errorf("[ssh][%s]run command failed [%s]", host, cmd)
