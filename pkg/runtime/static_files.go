@@ -25,7 +25,7 @@ import (
 
 const (
 	AuditPolicyYml      = "audit-policy.yml"
-	RemoteCmdCopyStatic = "mkdir -p %s && cp -f %s %s"
+	RemoteCmdCopyStatic = "mkdir -p %s &&sudo cp -f %s %s"
 )
 
 // StaticFile :static file should not be template, will never be changed while initialization.
