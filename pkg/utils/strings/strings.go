@@ -219,5 +219,5 @@ func EnvFromMap(shell string, envs map[string]string) string {
 	if env == "" {
 		return shell
 	}
-	return fmt.Sprintf("%s&& %s", env, shell)
+	return fmt.Sprintf("%s&& sudo %s", env, shell)
 }
