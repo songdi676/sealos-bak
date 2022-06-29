@@ -19,17 +19,17 @@ package contants
 import "fmt"
 
 const (
-	DefaultBashFmt      = "cd %s && bash %s"
+	DefaultBashFmt      = "cd %s && sodo bash %s"
 	DefaultCPFmt        = "mkdir -p %s && sudo cp -rf  %s/* %s/"
 	DefaultLnFmt        = "ln -s %s %s"
-	CdAndExecCmd        = "cd %s && %s"
+	CdAndExecCmd        = "cd %s && sodo %s"
 	renderInit          = "init"
 	renderClean         = "clean"
 	renderInitRegistry  = "init-registry"
 	renderCleanRegistry = "clean-registry"
 	renderAuth          = "auth"
 	renderCheck         = "check"
-	DefaultChmodBash    = "cd %s && chmod -R 0755 *"
+	DefaultChmodBash    = "cd %s && sodo chmod -R 0755 *"
 )
 
 type Bash interface {
