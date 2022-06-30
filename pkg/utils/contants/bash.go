@@ -29,7 +29,7 @@ const (
 	renderCleanRegistry = "clean-registry"
 	renderAuth          = "auth"
 	renderCheck         = "check"
-	DefaultChmodBash    = "cd %s && sodo chmod -R 0755 *"
+	DefaultChmodBash    = "cd %s && chmod -R 0755 *"
 )
 
 type Bash interface {
