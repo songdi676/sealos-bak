@@ -21,7 +21,7 @@ import "fmt"
 const (
 	DefaultBashFmt      = "cd %s && sudo bash %s"
 	DefaultCPFmt        = "mkdir -p %s && sudo cp -rf  %s/* %s/"
-	DefaultLnFmt        = "ln -s %s %s"
+	DefaultLnFmt        = "ln -snf %s %s"
 	CdAndExecCmd        = "cd %s && sudo %s"
 	renderInit          = "init"
 	renderClean         = "clean"
