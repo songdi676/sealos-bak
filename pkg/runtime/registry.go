@@ -55,11 +55,10 @@ func GetRegistry(rootfs, defaultRegistry string) *v1beta1.RegistryConfig {
 	if ip == "" {
 		ip = defaultRegistry
 	}
-	if domain == "" {
-		domain = DefaultConfig.Domain
-	}
+	domain = DefaultConfig.Domain
+
 	if port == "" {
-		domain = DefaultConfig.Port
+		port = DefaultConfig.Port
 	}
 	rConfig := &v1beta1.RegistryConfig{
 		IP:       ip,
