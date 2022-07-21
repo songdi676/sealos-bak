@@ -79,14 +79,17 @@ func checkTimeSync(cluster *v2.Cluster, ipList []string) error {
 			return fmt.Errorf("checker: failed to get host %s hostname, %v", ip, err)
 		}
 		timeStamp, err := s.CmdToString(ip, "date +%s", "")
+		logger.Debug("checker:timeSync  ip：%s，timeStamp：%s", ip, timeStamp)
 		if err != nil {
 			return fmt.Errorf("checker: failed to get %s timestamp, %v", ip, err)
 		}
 		ts, err := strconv.Atoi(timeStamp)
+		logger.Debug("checker:timeSync  ip：%s，ts：%s", ip, ts)
 		if err != nil {
 			return fmt.Errorf("checker: failed to reverse timestamp %s, %v", timeStamp, err)
 		}
 		timeDiff := time.Since(time.Unix(int64(ts), 0)).Minutes()
+		logger.Debug("checker:timeSync  ip：%s，timeDiff：%s", ip, timeDiff)
 		if timeDiff < -1 || timeDiff > 1 {
 			return fmt.Errorf("checker: the time of %s node is not synchronized", ip)
 		}
