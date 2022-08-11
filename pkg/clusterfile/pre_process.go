@@ -16,7 +16,6 @@ package clusterfile
 
 import (
 	"errors"
-	"github.com/labring/sealos/pkg/utils/logger"
 
 	"github.com/labring/sealos/pkg/runtime"
 	v2 "github.com/labring/sealos/pkg/types/v1beta1"
@@ -39,22 +38,18 @@ func (c *ClusterFile) Process() error {
 	}
 	clusterFileData, err := fileutil.ReadAll(c.path)
 	if err != nil {
-		logger.Error("ReadAll: ", err)
 		return err
 	}
 	err = c.DecodeCluster(clusterFileData)
 	if err != nil && err != ErrTypeNotFound {
-		logger.Error("DecodeCluster: ", err)
 		return err
 	}
 	err = c.DecodeConfigs(clusterFileData)
 	if err != nil && err != ErrTypeNotFound {
-		logger.Error("DecodeConfigs: ", err)
 		return err
 	}
 	err = c.DecodeKubeadmConfig(clusterFileData)
 	if err != nil && err != ErrTypeNotFound {
-		logger.Error("DecodeKubeadmConfig: ", err)
 		return err
 	}
 	return nil

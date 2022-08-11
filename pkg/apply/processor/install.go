@@ -100,11 +100,9 @@ func (c *InstallProcessor) PreProcess(cluster *v2.Cluster) error {
 	}
 	current := c.ClusterFile.GetCluster()
 	if err = SyncClusterStatus(current, c.ClusterManager, c.ImageManager, false); err != nil {
-		logger.Error("SyncClusterStatus: ", err)
 		return err
 	}
 	err = c.RegistryManager.Pull(c.NewImages...)
-	logger.Error("RegistryManager.Pull: ", err)
 	if err != nil {
 		return err
 	}
