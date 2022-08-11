@@ -17,6 +17,7 @@ package registry
 import (
 	"context"
 	"fmt"
+	"github.com/labring/sealos/pkg/utils/logger"
 	"os"
 	"time"
 
@@ -61,6 +62,7 @@ func (*RegistryService) Pull(images ...string) error {
 	}
 
 	if err := auth.CheckAuthFile(opt.authfile); err != nil {
+		logger.Error("CheckAuthFile: ", err)
 		return err
 	}
 
@@ -68,17 +70,20 @@ func (*RegistryService) Pull(images ...string) error {
 
 	decConfig, err := getDecryptConfig(opt.decryptionKeys)
 	if err != nil {
+		logger.Error("getDecryptConfig: ", err)
 		return errors.Wrapf(err, "unable to obtain decrypt config")
 	}
 
 	policy, ok := define.PolicyMap[opt.pullPolicy]
 	if !ok {
+		logger.Error("PolicyMap: ", err)
 		return fmt.Errorf("unsupported pull policy %q", "missing")
 	}
 
 	globalFlagResults := newGlobalOptions()
 	store, err := getStore(globalFlagResults)
 	if err != nil {
+		logger.Error("getStore: ", err)
 		return err
 	}
 
@@ -98,6 +103,7 @@ func (*RegistryService) Pull(images ...string) error {
 	for _, image := range images {
 		imageID, err := buildah.Pull(context.TODO(), image, opts)
 		if err != nil {
+			logger.Error("buildah.Pull: ", err)
 			return err
 		}
 		fmt.Println(imageID)

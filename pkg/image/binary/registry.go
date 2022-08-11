@@ -18,6 +18,7 @@ package binary
 
 import (
 	"fmt"
+	"github.com/labring/sealos/pkg/utils/logger"
 
 	"github.com/labring/sealos/pkg/image/types"
 
@@ -36,6 +37,7 @@ func (*RegistryService) Logout(domain string) error {
 func (*RegistryService) Pull(images ...string) error {
 	for _, image := range images {
 		if err := exec.Cmd("bash", "-c", fmt.Sprintf("buildah pull --tls-verify=false %s", image)); err != nil {
+			logger.Error("Pull.exec.cmd: ", err)
 			return err
 		}
 	}
