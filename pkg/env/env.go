@@ -101,6 +101,7 @@ func (p *processor) getHostEnv(hostIP string) map[string]string {
 			}
 		}
 	}
+	hostEnv = append(hostEnv, "KubeNodeIP="+hostIP)
 	hostEnvMap := maps.ListToMap(hostEnv)
 	specEnvMap := maps.ListToMap(p.Spec.Env)
 	var imageEnvMap map[string]string
