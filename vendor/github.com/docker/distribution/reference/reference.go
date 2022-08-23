@@ -27,9 +27,8 @@ package reference
 import (
 	"errors"
 	"fmt"
+	"github.com/labring/sealos/pkg/utils/logger"
 	"strings"
-
-	"github.com/opencontainers/go-digest"
 )
 
 const (
@@ -252,6 +251,7 @@ func ParseNamed(s string) (Named, error) {
 // WithName returns a named object representing the given string. If the input
 // is invalid ErrReferenceInvalidFormat will be returned.
 func WithName(name string) (Named, error) {
+	logger.Info(">>>>>name:", name)
 	if len(name) > NameTotalLengthMax {
 		return nil, ErrNameTooLong
 	}
