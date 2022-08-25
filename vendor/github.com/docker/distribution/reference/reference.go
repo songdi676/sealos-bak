@@ -27,7 +27,6 @@ package reference
 import (
 	"errors"
 	"fmt"
-	"github.com/labring/sealos/pkg/utils/logger"
 	"strings"
 )
 
@@ -251,7 +250,6 @@ func ParseNamed(s string) (Named, error) {
 // WithName returns a named object representing the given string. If the input
 // is invalid ErrReferenceInvalidFormat will be returned.
 func WithName(name string) (Named, error) {
-	logger.Info(">>>>>name: %s", name)
 	if len(name) > NameTotalLengthMax {
 		return nil, ErrNameTooLong
 	}
