@@ -88,8 +88,8 @@ func (c *CreateProcessor) Check(cluster *v2.Cluster) error {
 }
 func (c *CreateProcessor) CheckImageType(cluster *v2.Cluster) error {
 	ociList, err := c.ImageManager.Inspect(cluster.Spec.Image...)
-	logger.Info("CheckImageType: %s", err)
 	if err != nil {
+		logger.Debug("CheckImageType: %s", err)
 		return err
 	}
 	imageTypes := sets.NewString()

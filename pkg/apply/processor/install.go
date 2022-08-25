@@ -96,6 +96,7 @@ func (c *InstallProcessor) GetPipeLine() ([]func(cluster *v2.Cluster) error, err
 func (c *InstallProcessor) PreProcess(cluster *v2.Cluster) error {
 	err := c.ClusterFile.Process()
 	if err != nil {
+		logger.Debug("PreProcess: %s", err)
 		return err
 	}
 	current := c.ClusterFile.GetCluster()
