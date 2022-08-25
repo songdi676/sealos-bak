@@ -35,6 +35,8 @@ import (
 	v2 "github.com/labring/sealos/pkg/types/v1beta1"
 	"github.com/labring/sealos/pkg/utils/contants"
 	"github.com/labring/sealos/pkg/utils/yaml"
+
+	"github.com/labring/sealos/pkg/utils/logger"
 )
 
 type CreateProcessor struct {
@@ -86,6 +88,7 @@ func (c *CreateProcessor) Check(cluster *v2.Cluster) error {
 }
 func (c *CreateProcessor) CheckImageType(cluster *v2.Cluster) error {
 	ociList, err := c.ImageManager.Inspect(cluster.Spec.Image...)
+	logger.Info("CheckImageType: %s", err)
 	if err != nil {
 		return err
 	}

@@ -6,9 +6,6 @@ import (
 	"strings"
 
 	"github.com/docker/distribution/digestset"
-	"github.com/opencontainers/go-digest"
-
-	"github.com/labring/sealos/pkg/utils/logger"
 )
 
 var (
@@ -65,10 +62,8 @@ func ParseNormalizedNamed(s string) (Named, error) {
 // sha256:7cc4b5aefd1d0cadf8d97d4350462ba51c694ebca145b08d7d41b41acc8db5aa will be returned as
 // docker.io/library/busybox@sha256:7cc4b5aefd1d0cadf8d97d4350462ba51c694ebca145b08d7d41b41acc8db5aa.
 func ParseDockerRef(ref string) (Named, error) {
-	logger.Info(">>>>>>ref: %s", ref)
 	named, err := ParseNormalizedNamed(ref)
 	if err != nil {
-		logger.Error("ParseNormalizedNamed:", err)
 		return nil, err
 	}
 	if _, ok := named.(NamedTagged); ok {
