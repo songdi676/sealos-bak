@@ -108,9 +108,11 @@ func (c *CreateProcessor) CheckImageType(cluster *v2.Cluster) error {
 func (c *CreateProcessor) PreProcess(cluster *v2.Cluster) error {
 	err := c.RegistryManager.Pull(cluster.Spec.Image...)
 	if err != nil {
+		logger.Debug("preProcess.pull: %s", err)
 		return err
 	}
 	if err = c.CheckImageType(cluster); err != nil {
+		logger.Debug("preProcess.CheckImageType: %s", err)
 		return err
 	}
 	for _, img := range cluster.Spec.Image {
