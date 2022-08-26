@@ -99,6 +99,8 @@ func (*RegistryService) Pull(images ...string) error {
 		PullPolicy:          policy,
 	}
 	for _, image := range images {
+		logger.Debug(" image:: %s", image)
+		logger.Debug(" opts:: %s", opts)
 		imageID, err := buildah.Pull(context.TODO(), image, opts)
 		if err != nil {
 			logger.Debug(" buildah.Pull: %s", err)
