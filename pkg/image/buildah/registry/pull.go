@@ -17,6 +17,7 @@ package registry
 import (
 	"context"
 	"fmt"
+	"github.com/labring/sealos/pkg/utils/logger"
 	"os"
 	"time"
 
@@ -61,6 +62,7 @@ func (*RegistryService) Pull(images ...string) error {
 	}
 
 	if err := auth.CheckAuthFile(opt.authfile); err != nil {
+		logger.Debug("CheckAuthFile: %s", err)
 		return err
 	}
 
@@ -68,6 +70,7 @@ func (*RegistryService) Pull(images ...string) error {
 
 	decConfig, err := getDecryptConfig(opt.decryptionKeys)
 	if err != nil {
+		logger.Debug("getDecryptConfig: %s", err)
 		return errors.Wrapf(err, "unable to obtain decrypt config")
 	}
 
@@ -98,8 +101,10 @@ func (*RegistryService) Pull(images ...string) error {
 	for _, image := range images {
 		imageID, err := buildah.Pull(context.TODO(), image, opts)
 		if err != nil {
+			logger.Debug(" buildah.Pull: %s", err)
 			return err
 		}
+		logger.Debug("imageID: %s", imageID)
 		fmt.Println(imageID)
 	}
 
