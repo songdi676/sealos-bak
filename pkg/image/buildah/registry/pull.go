@@ -16,6 +16,7 @@ package registry
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/labring/sealos/pkg/utils/logger"
 	"os"
@@ -100,7 +101,9 @@ func (*RegistryService) Pull(images ...string) error {
 	}
 	for _, image := range images {
 		logger.Debug(" image:: %s", image)
-		logger.Debug(" opts:: %s", opts)
+		var str = []byte(nil)
+		str, _ = json.Marshal(opts)
+		logger.Debug(" opts:: %s", string(str))
 		imageID, err := buildah.Pull(context.TODO(), image, opts)
 		if err != nil {
 			logger.Debug(" buildah.Pull: %s", err)
