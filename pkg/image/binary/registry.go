@@ -18,6 +18,7 @@ package binary
 
 import (
 	"fmt"
+	"github.com/labring/sealos/pkg/utils/logger"
 
 	"github.com/labring/sealos/pkg/image/types"
 
@@ -34,8 +35,10 @@ func (*RegistryService) Logout(domain string) error {
 	return exec.Cmd("bash", "-c", fmt.Sprintf("buildah logout %s", domain))
 }
 func (*RegistryService) Pull(images ...string) error {
+	logger.Debug("registry.go,pull images: %s", images)
 	for _, image := range images {
 		if err := exec.Cmd("bash", "-c", fmt.Sprintf("buildah pull --tls-verify=false %s", image)); err != nil {
+			logger.Debug("exec >>>>  bash -c buildah pull --tls-verify=false: %s", err)
 			return err
 		}
 	}
