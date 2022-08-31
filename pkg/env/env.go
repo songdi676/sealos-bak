@@ -21,6 +21,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/labring/sealos/pkg/utils/iputils"
 	"github.com/labring/sealos/pkg/utils/maps"
 	strings2 "github.com/labring/sealos/pkg/utils/strings"
 
@@ -101,9 +102,8 @@ func (p *processor) getHostEnv(hostIP string) map[string]string {
 			}
 		}
 	}
-	ip := strings.Split(hostIP, ":")
-	fmt.Println("KubeNodeIP=" + ip[0])
-	hostEnv = append(hostEnv, "KubeNodeIP="+ip[0])
+	fmt.Println("KubeNodeIP=" + iputils.GetHostIP(hostIP))
+	hostEnv = append(hostEnv, "KubeNodeIP="+iputils.GetHostIP(hostIP))
 	hostEnvMap := maps.ListToMap(hostEnv)
 	specEnvMap := maps.ListToMap(p.Spec.Env)
 	var imageEnvMap map[string]string
