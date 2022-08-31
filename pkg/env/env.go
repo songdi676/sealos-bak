@@ -102,6 +102,7 @@ func (p *processor) getHostEnv(hostIP string) map[string]string {
 		}
 	}
 	ip := strings.Split(hostIP, ":")
+	fmt.Println("KubeNodeIP=" + ip[0])
 	hostEnv = append(hostEnv, "KubeNodeIP="+ip[0])
 	hostEnvMap := maps.ListToMap(hostEnv)
 	specEnvMap := maps.ListToMap(p.Spec.Env)
